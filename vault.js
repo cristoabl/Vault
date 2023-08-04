@@ -55,29 +55,20 @@ const CONTRACT_ABI = fetch("./vault-abi.json");
 
 
 async function withdraw() {
-    // Get the amount to withdraw from the input field
     let withdrawAmount = document.getElementById("withdraw").value;
 
-    // Check if the input is valid
     if (isNaN(withdrawAmount) || withdrawAmount <= 0) {
         alert("Please enter a valid withdrawal amount.");
         return;
     }
 
-    // Convert the withdrawAmount to a BigNumber to handle large numbers
-    const amountBN = ethers.BigNumber.from(withdrawAmount);
-
-    // Create a new instance of the contract using ethers.js
     const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, provider.getSigner());
 
     try {
-        // Call the withdraw function on the smart contract
-        const tx = await contract.Withdraw(amountBN);
+        const tx = await contract.Withdraw(withdrawAmount);
 
-        // Wait for the transaction to be mined
         await tx.wait();
 
-        // Show a success message to the user
         alert("Withdrawal successful! Amount withdrawn: " + withdrawAmount);
     } catch (error) {
         console.error(error);
@@ -86,29 +77,20 @@ async function withdraw() {
 }
 
 async function deposit() {
-    // Get the amount to deposit from the input field
     let depositAmount = document.getElementById("deposit").value;
 
-    // Check if the input is valid
     if (isNaN(depositAmount) || depositAmount <= 0) {
         alert("Please enter a valid deposit amount.");
         return;
     }
 
-    // Convert the depositAmount to a BigNumber to handle large numbers
-    const amountBN = ethers.BigNumber.from(depositAmount);
-
-    // Create a new instance of the contract using ethers.js
     const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, provider.getSigner());
 
     try {
-        // Call the deposit function on the smart contract
-        const tx = await contract.deposit({ value: amountBN });
+        const tx = await contract.deposit(depositAmount);
 
-        // Wait for the transaction to be mined
         await tx.wait();
 
-        // Show a success message to the user
         alert("Deposit successful! Amount deposited: " + depositAmount);
     } catch (error) {
         console.error(error);
