@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <title>The Safe</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    </head>
+    <body>
+        <h1 class="centered">Welcome to The Safe</h1>
+        <button onclick="connectWallet()">Connect Wallet</button>
+        
+        <script src="./vault.js"></script>
+
+        <form class="centered" id="depositform">
+            <input type="number" id="deposit" placeholder="Amount to deposit">
+            <button type="button" onclick="deposit()">Deposit</button>
+        </form>
+
+        <form class="centered" id="withdrawform">
+            <input type="number" id="withdraw" placeholder="Amount to withdraw">
+            <button type="button" onclick="withdraw()">Withdraw</button>
+        </form>
+
+        
+    </body>
+</html>
